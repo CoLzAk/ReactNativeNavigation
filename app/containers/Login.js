@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, FormLabel, FormInput } from 'react-native-elements'
 
 const {
-    View
+    View,
 } = ReactNative;
 
 class Login extends Component {
@@ -24,15 +24,22 @@ class Login extends Component {
         return (
             <View>
                 <FormLabel>EMAIL</FormLabel>
-                <FormInput placeholder='example@example.co' />
+                <FormInput placeholder="example@example.co" />
 
                 <FormLabel>PASSWORD</FormLabel>
-                <FormInput placeholder='********'
+                <FormInput placeholder="********"
                            secureTextEntry={true} />
 
                 <Button
+                    component="TouchableHighlight"
                     onPress={ () => this.submit() }
-                    title='LOGIN' />
+                    title="LOGIN" />
+
+                <Button
+                    backgroundColor="none"
+                    component="TouchableOpacity"
+                    onPress={() => this.props.navigation.navigate('Register')}
+                    title="Don't have an account yet ? Register" />
             </View>
         );
     }
