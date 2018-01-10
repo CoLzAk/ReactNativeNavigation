@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import ReactNative from 'react-native';
 import { connect } from 'react-redux';
-import { Button, FormLabel, FormInput } from 'react-native-elements'
-
-const {
-    View,
-} = ReactNative;
+import {
+    Container,
+    Content,
+    Button,
+    Text,
+    Form,
+    Item,
+    Label,
+    Input,
+} from 'native-base';
 
 class Login extends Component {
     static navigationOptions = {
@@ -17,30 +21,39 @@ class Login extends Component {
     }
 
     submit() {
-        console.log('submit form');
+        console.log(this.state.loginData);
+
+        return this.props.login(this.state.loginData);
     }
 
     render() {
         return (
-            <View>
-                <FormLabel>EMAIL</FormLabel>
-                <FormInput placeholder="example@example.co" />
+            <Container>
+                <Content padder>
+                    <Form>
+                        <Item floatingLabel>
+                            <Label>form.label.email</Label>
+                            <Input />
+                        </Item>
 
-                <FormLabel>PASSWORD</FormLabel>
-                <FormInput placeholder="********"
-                           secureTextEntry={true} />
+                        <Item floatingLabel>
+                            <Label>form.label.password</Label>
+                            <Input secureTextEntry />
+                        </Item>
 
-                <Button
-                    component="TouchableHighlight"
-                    onPress={ () => this.submit() }
-                    title="LOGIN" />
+                        <Button block primary>
+                            <Text>form.button.login</Text>
+                        </Button>
+                    </Form>
 
-                <Button
-                    backgroundColor="none"
-                    component="TouchableOpacity"
-                    onPress={() => this.props.navigation.navigate('Register')}
-                    title="Don't have an account yet ? Register" />
-            </View>
+                    <Button block
+                            transparent
+                            primary
+                            onPress={ () => this.props.navigation.navigate('Register') }>
+                        <Text>link.register</Text>
+                    </Button>
+                </Content>
+            </Container>
         );
     }
 }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import { connect } from 'react-redux';
-import { Button, FormLabel, FormInput } from 'react-native-elements'
 
 const {
-    View
+    View,
+    Text
 } = ReactNative;
 
 class Register extends Component {
@@ -23,16 +23,7 @@ class Register extends Component {
     render() {
         return (
             <View>
-                <FormLabel>EMAIL</FormLabel>
-                <FormInput placeholder='example@example.co' />
-
-                <FormLabel>PASSWORD</FormLabel>
-                <FormInput placeholder='********'
-                           secureTextEntry={true} />
-
-                <Button
-                    onPress={ () => this.submit() }
-                    title='LOGIN' />
+                <Text>Register</Text>
             </View>
         );
     }
