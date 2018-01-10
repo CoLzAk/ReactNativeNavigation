@@ -10,6 +10,14 @@ import {
     Label,
     Input,
 } from 'native-base';
+import t from 'tcomb-form-native';
+
+const TForm = t.form.Form;
+
+const LoginForm = t.struct({
+    email: t.String,
+    password: t.String,
+});
 
 class Login extends Component {
     static navigationOptions = {
@@ -30,6 +38,7 @@ class Login extends Component {
         return (
             <Container>
                 <Content padder>
+                    <TForm type={LoginForm} />
                     <Form>
                         <Item floatingLabel>
                             <Label>form.label.email</Label>
