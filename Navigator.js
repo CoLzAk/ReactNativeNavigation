@@ -1,5 +1,7 @@
 import { StackNavigator, TabNavigator } from 'react-navigation';
 
+import { connect } from 'react-redux';
+
 import {
     DetailsScreen,
     HomeScreen,
@@ -9,6 +11,18 @@ import {
     Login,
     Register,
 } from './app/containers';
+
+// class Navigator extends Component {
+//     constructor(props) {
+//         super(props);
+//     }
+//
+//     render() {
+//         return (
+//
+//         );
+//     }
+// }
 
 const PublicNavigator = StackNavigator({
     Login: {
@@ -32,3 +46,13 @@ export {
     PublicNavigator,
     ProtectedNavigator,
 };
+
+// function mapStateToProps(state) {
+//     return {
+//         isLoggedIn: state.isLoggedIn,
+//     };
+// }
+//
+// export default connect(
+//     mapStateToProps,
+// )(Login);
