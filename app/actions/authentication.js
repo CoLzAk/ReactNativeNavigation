@@ -28,9 +28,9 @@ export function login(loginData) {
     return (dispatch) => {
         dispatch(loginRequested(loginData));
 
-        if (checkLogin(loginData) === false) {
-            return dispatch(loginFailed(loginError));
-        }
+        // if (checkLogin(loginData) === false) {
+        //     return dispatch(loginFailed(loginError));
+        // }
 
         return dispatch(loginSucceeded(credentials));
     }

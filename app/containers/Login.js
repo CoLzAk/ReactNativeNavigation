@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { NavigationActions } from "react-navigation";
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -33,11 +35,31 @@ class Login extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        console.log(this.props.isLoggedIn);
+    }
+
+    componentDidUpdate() {
+        console.log(this.props.isLoggedIn);
+    }
+
+    navigateToRegister() {
+        let navigateToRegisterAction = NavigationActions.navigate({
+            routeName: "register",
+        });
+
+        this.props.navigation.dispatch(navigateToRegisterAction);
+    }
+
     submit() {
         let loginData = this.refs.loginData.getValue();
 
+        if (loginData === null) {
+            return;
+        }
+
         return this.props.login(loginData);
-    };
+    }
 
     render() {
         return (
@@ -55,7 +77,7 @@ class Login extends Component {
                     <Button block
                             transparent
                             primary
-                            onPress={ () => this.props.navigation.navigate('Register') }>
+                            onPress={ () => this.navigateToRegister() }>
                         <Text>link.register</Text>
                     </Button>
                 </Content>
@@ -69,8 +91,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return {
-        loginData: state.loginData,
+        isLoggedIn: state.authentication.isLoggedIn,
     };
 }
 

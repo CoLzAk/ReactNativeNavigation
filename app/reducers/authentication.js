@@ -1,19 +1,19 @@
-import { AsyncStorage } from 'react-native';
-
 import createReducer from '../helpers';
+
+import { AuthenticationService } from '../services';
 import { LOGIN_SUCCEEDED } from '../actions/types';
 
-const defaultState = {
+const initialState = {
     isLoggedIn: false,
 };
 
-export const login = createReducer(defaultState, {
+export const authentication = createReducer(initialState, {
     [LOGIN_SUCCEEDED](state, action) {
-        state = Object.assign({}, state, { isLoggedIn: true });
+        AuthenticationService.saveCredentials(action.credentials);
 
-        AsyncStorage.setItem('loggedIn', true);
-        AsyncStorage.setItem('credentials', JSON.stringify(action.credentials));
-
-        return state;
-    }
+        return {
+            ...state,
+            isLoggedIn: true,
+        };
+    },
 });

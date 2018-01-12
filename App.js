@@ -6,7 +6,8 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
 import reducer from './app/reducers';
-import { PublicNavigator } from './Navigator';
+
+import AppNavigation from './app/navigation';
 
 const loggerMiddleware = createLogger({
     'predicate': (getState, action) => __DEV__,
@@ -27,7 +28,7 @@ const store = configureStore({});
 
 const App = () => (
     <Provider store={store}>
-        <PublicNavigator />
+        <AppNavigation />
     </Provider>
 );
 
