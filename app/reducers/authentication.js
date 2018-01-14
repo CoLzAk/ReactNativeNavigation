@@ -1,4 +1,4 @@
-import createReducer from '../helpers';
+import { createReducer } from '../helpers';
 
 import { AuthenticationService } from '../services';
 import { LOGIN_SUCCEEDED } from '../actions/types';

@@ -1,7 +1,7 @@
-import HomeScreen from './home';
+import Home from './home';
 import DetailsScreen from './details';
 
 export {
-    HomeScreen,
+    Home,
     DetailsScreen,
 };

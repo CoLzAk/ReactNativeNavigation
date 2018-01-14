@@ -8,7 +8,7 @@ import {
 
 import { connect } from 'react-redux';
 
-import PublicNavigation from "./publicNavigation";
+import Navigation from "./navigation";
 
 class AppNavigation extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class AppNavigation extends Component {
     }
 
     onBackPress() {
-        if (this.props.navigationState.stateForLoggedIn.index <= 1) {
+        if (this.props.navigationState.stateForHome.index <= 1) {
             BackHandler.exitApp();
 
             return;
@@ -36,14 +36,11 @@ class AppNavigation extends Component {
     };
 
     render() {
-        let { navigationState, dispatch, isLoggedIn } = this.props;
-        let state = isLoggedIn
-            ? navigationState.stateForLoggedIn
-            : navigationState.stateForLoggedOut;
+        let { navigationState, dispatch } = this.props;
 
         return (
-            <PublicNavigation
-                navigation={ addNavigationHelpers({ dispatch, state: state }) }
+            <Navigation
+                navigation={ addNavigationHelpers({ dispatch, state: navigationState.stateForHome }) }
             />
         );
     }

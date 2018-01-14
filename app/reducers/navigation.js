@@ -1,39 +1,41 @@
-import createReducer from '../helpers';
+import { NavigationActions } from 'react-navigation';
 
 import { LOGIN_SUCCEEDED } from '../actions/types';
+import { createReducer } from '../helpers';
+import AppNavigator from '../navigation';
 
-import AppNavigator from '../navigation/publicNavigation';
+const actionForHome = AppNavigator.router.getActionForPathAndParams('home');
+const stateForHome = AppNavigator.router.getStateForAction(actionForHome);
 
-const actionForLoggedIn = AppNavigator.router.getActionForPathAndParams('home');
-const actionForLoggedOut = AppNavigator.router.getActionForPathAndParams('login');
-
-const stateForLoggedIn = AppNavigator.router.getStateForAction(actionForLoggedIn);
-const stateForLoggedOut = AppNavigator.router.getStateForAction(actionForLoggedOut);
-
-const initialState = { stateForLoggedIn, stateForLoggedOut };
-
-// export const navigation = (state = initialState, action) => {
-//     const newState = AppNavigator.router.getStateForAction(action, state);
-//     return newState || state;
-// };
+const initialState = { stateForHome };
 
 export const navigation = createReducer(initialState, {
-    ['@@redux/INIT'](state) {
+    ['Navigation/BACK'](state) {
         return {
             ...state,
-            stateForLoggedIn: AppNavigator.router.getStateForAction(
-                actionForLoggedIn,
-                stateForLoggedOut
-            )
+            stateForHome: AppNavigator.router.getStateForAction(
+                NavigationActions.back(),
+                stateForHome,
+            ),
         };
     },
+
+    ['Navigation/NAVIGATE'](state, action) {
+        return {
+            ...state,
+            stateForHome: AppNavigator.router.getStateForAction(
+                action,
+                state.stateForHome,
+            ),
+        };
+    },
+
     [LOGIN_SUCCEEDED](state) {
         return {
             ...state,
-            stateForLoggedIn: AppNavigator.router.getStateForAction(
-                actionForLoggedIn,
-                stateForLoggedOut
+            stateForHome: AppNavigator.router.getStateForAction(
+                stateForHome,
             )
         };
-    }
+    },
 });
