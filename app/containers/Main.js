@@ -11,7 +11,7 @@ import {
     Text,
 } from 'native-base';
 
-class Home extends Component {
+class Main extends Component {
     constructor(props) {
         super(props);
     }
@@ -28,8 +28,7 @@ class Home extends Component {
         return (
             <Container>
                 <Content padder>
-
-                    <Text>This is home</Text>
+                    <Text>This is main</Text>
                 </Content>
             </Container>
         );
@@ -48,4 +47,4 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-)(Home);
+)(Main);

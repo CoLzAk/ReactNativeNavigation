@@ -39,9 +39,11 @@ class AppNavigation extends Component {
         let { navigationState, dispatch } = this.props;
 
         return (
+            // include header
             <Navigation
                 navigation={ addNavigationHelpers({ dispatch, state: navigationState.stateForHome }) }
             />
+            // include footer
         );
     }
 }

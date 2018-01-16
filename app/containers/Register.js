@@ -8,10 +8,6 @@ const {
 } = ReactNative;
 
 class Register extends Component {
-    static navigationOptions = {
-        title: 'Login',
-    };
-
     constructor(props) {
         super(props);
     }

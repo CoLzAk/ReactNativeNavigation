@@ -27,10 +27,6 @@ const LoginForm = t.struct({
 });
 
 class Login extends Component {
-    static navigationOptions = {
-        title: 'Login',
-    };
-
     constructor(props) {
         super(props);
     }

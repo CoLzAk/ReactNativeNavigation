@@ -2,7 +2,7 @@ import { NavigationActions } from 'react-navigation';
 
 import { LOGIN_SUCCEEDED } from '../actions/types';
 import { createReducer } from '../helpers';
-import AppNavigator from '../navigation';
+import AppNavigator from '../navigation/navigation';
 
 const actionForHome = AppNavigator.router.getActionForPathAndParams('home');
 const stateForHome = AppNavigator.router.getStateForAction(actionForHome);
