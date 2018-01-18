@@ -11,17 +11,9 @@ import {
     Text,
 } from 'native-base';
 
-class Home extends Component {
+class OrderHistory extends Component {
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-        console.log(this.props.isLoggedIn);
-    }
-
-    componentDidUpdate() {
-        console.log(this.props.isLoggedIn);
     }
 
     render() {
@@ -29,7 +21,7 @@ class Home extends Component {
             <Container>
                 <Content padder>
 
-                    <Text>This is home</Text>
+                    <Text>This is order</Text>
                 </Content>
             </Container>
         );
@@ -48,4 +40,4 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-)(Home);
+)(OrderHistory);

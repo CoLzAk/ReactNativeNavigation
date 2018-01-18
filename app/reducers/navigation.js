@@ -2,20 +2,27 @@ import { NavigationActions } from 'react-navigation';
 
 import { LOGIN_SUCCEEDED } from '../actions/types';
 import { createReducer } from '../helpers';
-import AppNavigator from '../navigation/navigation';
+import { AppNavigator } from '../navigation/appNavigator';
 
-const actionForHome = AppNavigator.router.getActionForPathAndParams('home');
-const stateForHome = AppNavigator.router.getStateForAction(actionForHome);
+const actionForOrder = AppNavigator.router.getActionForPathAndParams('order');
+const actionForLogin = AppNavigator.router.getActionForPathAndParams('login');
+const stateForOrder = AppNavigator.router.getStateForAction(actionForOrder);
+const stateForLogin = AppNavigator.router.getStateForAction(actionForLogin);
 
-const initialState = { stateForHome };
+// const actionForLogin = TestNav.router.getActionForPathAndParams('login');
+// const stateForLogin = TestNav.router.getActionForPathAndParams('actionForLogin');
 
+const initialState = { stateForOrder, stateForLogin };
+// const initialState = { stateForLogin };
+
+// export const navigation = createReducer(initialState, {});
 export const navigation = createReducer(initialState, {
     ['Navigation/BACK'](state) {
         return {
             ...state,
-            stateForHome: AppNavigator.router.getStateForAction(
+            stateForOrder: AppNavigator.router.getStateForAction(
                 NavigationActions.back(),
-                stateForHome,
+                stateForOrder,
             ),
         };
     },
@@ -23,9 +30,9 @@ export const navigation = createReducer(initialState, {
     ['Navigation/NAVIGATE'](state, action) {
         return {
             ...state,
-            stateForHome: AppNavigator.router.getStateForAction(
+            stateForOrder: AppNavigator.router.getStateForAction(
                 action,
-                state.stateForHome,
+                state.stateForOrder,
             ),
         };
     },
@@ -33,8 +40,8 @@ export const navigation = createReducer(initialState, {
     [LOGIN_SUCCEEDED](state) {
         return {
             ...state,
-            stateForHome: AppNavigator.router.getStateForAction(
-                stateForHome,
+            stateForOrder: AppNavigator.router.getStateForAction(
+                stateForOrder,
             )
         };
     },

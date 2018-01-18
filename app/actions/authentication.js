@@ -1,12 +1,18 @@
+import { NavigationActions } from "react-navigation";
+
+import { AuthenticationService } from '../services';
+
 import {
     LOGIN_FAILED,
     LOGIN_REQUESTED,
-    LOGIN_SUCCEEDED
+    LOGIN_REQUIRED,
+    LOGIN_SUCCEEDED,
+    LOGOUT,
 } from './types';
 
 const loginDataMock = {
-    'email': 'joel.lauret@gmail.com',
-    'password': 'password',
+    'email': 'joel',
+    'password': 'joel',
 };
 
 const credentials = {
@@ -28,11 +34,15 @@ export function login(loginData) {
     return (dispatch) => {
         dispatch(loginRequested(loginData));
 
-        // if (checkLogin(loginData) === false) {
-        //     return dispatch(loginFailed(loginError));
-        // }
+        if (checkLogin(loginData) === false) {
+            return dispatch(loginFailed(loginError));
+        }
 
-        return dispatch(loginSucceeded(credentials));
+        return AuthenticationService
+            .saveCredentials(loginData)
+            .then((credentials) => {
+                return dispatch(loginSucceeded(credentials));
+            });
     }
 }
 
@@ -56,3 +66,34 @@ export function loginRequested(loginData) {
         loginData,
     };
 }
+
+export function loginRequired() {
+    return (dispatch) => {
+        return AuthenticationService
+            .hasCredentials()
+            .then((hasCredentials) => {
+                console.log(hasCredentials);
+                let navigateToLoginAction = NavigationActions.navigate({
+                    routeName: "login",
+                });
+
+                return dispatch(navigateToLoginAction);
+            });
+    }
+}
+
+export function logout() {
+    return (dispatch) => {
+        return AuthenticationService
+            .removeCredentials()
+            .then(() => {
+                // dispatch(logoutSuccess());
+            });
+    }
+}
+
+const logoutSuccess = () => {
+    return {
+        type: LOGOUT
+    }
+};

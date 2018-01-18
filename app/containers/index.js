@@ -1,15 +1,13 @@
-import Home from './Home';
-import Main from './Main';
+import Account from './Account';
+import Order from './Order';
 import Login from './Login';
-import Orders from './Orders';
+import OrderHistory from './OrderHistory';
 import Register from './Register';
-import User from './User';
 
 export {
-    Home,
-    Main,
+    Account,
+    Order,
     Login,
-    Orders,
+    OrderHistory,
     Register,
-    User,
 };

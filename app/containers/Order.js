@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { NavigationActions } from 'react-navigation';
+import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,40 +11,36 @@ import {
     Text,
 } from 'native-base';
 
-class Main extends Component {
+import { AuthenticationActions } from '../actions'
+
+class Order extends Component {
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-        console.log(this.props.isLoggedIn);
-    }
-
-    componentDidUpdate() {
-        console.log(this.props.isLoggedIn);
     }
 
     render() {
         return (
             <Container>
                 <Content padder>
-                    <Text>This is main</Text>
+                    <Text>This is order main page</Text>
                 </Content>
             </Container>
         );
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators(AuthenticationActions, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(AuthenticationActions, dispatch);
+}
 
 function mapStateToProps(state) {
     return {
         isLoggedIn: state.authentication.isLoggedIn,
+        navigation: state.navigation,
     };
 }
 
 export default connect(
     mapStateToProps,
-)(Main);
+    mapDispatchToProps,
+)(Order);

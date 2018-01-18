@@ -6,27 +6,17 @@ import {
 } from 'react-navigation';
 
 import {
-    Home,
-    Main,
+    Account,
     Login,
-    Orders,
+    Order,
+    OrderHistory,
     Register,
-    User,
 } from '../containers';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const AuthenticationStack = StackNavigator({
-    login: {
-        screen: Login
-    },
-    register: {
-        screen: Register
-    },
-});
-
 const accountTab = {
-    screen: AuthenticationStack,
+    screen: Account,
     navigationOptions: {
         tabBarLabel: 'Account',
         tabBarIcon: ({ tintColor, focused }) => (
@@ -39,10 +29,10 @@ const accountTab = {
     },
 };
 
-const homeTab = {
-    screen: Home,
+const orderTab = {
+    screen: Order,
     navigationOptions: {
-        tabBarLabel: 'Home',
+        tabBarLabel: 'Order',
         tabBarIcon: ({ tintColor, focused }) => (
             <MaterialCommunityIcons
                 name='hanger'
@@ -53,10 +43,10 @@ const homeTab = {
     },
 };
 
-const ordersTab = {
-    screen: Orders,
+const orderHistoryTab = {
+    screen: OrderHistory,
     navigationOptions: {
-        tabBarLabel: 'Orders',
+        tabBarLabel: 'Order History',
         tabBarIcon: ({ tintColor, focused }) => (
             <MaterialCommunityIcons
                 name='credit-card'
@@ -67,24 +57,25 @@ const ordersTab = {
     },
 };
 
-const userTab = {
-    screen: User,
-    navigationOptions: {
-        tabBarLabel: 'User',
-        tabBarIcon: ({ tintColor, focused }) => (
-            <MaterialCommunityIcons
-                name='account-outline'
-                size={26}
-                style={{ color: tintColor }}
-            />
-        ),
+const AuthNavigator = StackNavigator({
+    login: {
+        screen: Login
     },
-};
+    register: {
+        screen: Register
+    },
+});
 
-const Navigation = TabNavigator({
-    home: homeTab,
-    orders: ordersTab,
-    user: userTab,
+export const AppNavigator = TabNavigator({
+    order: orderTab,
+    orders: orderHistoryTab,
+    account: accountTab,
+    auth: {
+        screen: AuthNavigator,
+        navigationOptions: {
+            tabBarVisible: false,
+        }
+    },
 }, {
     // tabBarPosition: 'bottom',
     tabBarOptions: {
@@ -93,16 +84,12 @@ const Navigation = TabNavigator({
     }
 });
 
-// const Navigation = StackNavigator({
-//     home: homeTab,
-//     orders: ordersTab,
-//     user: userTab,
+// export const TestNav = StackNavigator({
+//     login: { screen: Login },
+//     // tab: {
+//     //     screen: AppNavigator
+//     // }
 // });
 
-// const Navigation = StackNavigator({
-//     main: {
-//         screen: Main,
-//     },
-// });
 
-export default Navigation;
+
