@@ -31,17 +31,9 @@ class Login extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        console.log(this.props.isLoggedIn);
-    }
-
-    componentDidUpdate() {
-        console.log(this.props.isLoggedIn);
-    }
-
     navigateToRegister() {
         let navigateToRegisterAction = NavigationActions.navigate({
-            routeName: "register",
+            routeName: 'auth/register',
         });
 
         this.props.navigation.dispatch(navigateToRegisterAction);

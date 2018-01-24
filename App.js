@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
-import AppNavigation from './app/navigation/AppNavigation';
+import { AppNavigation } from './app/navigation';
 import reducer from './app/reducers';
 
 const loggerMiddleware = createLogger({

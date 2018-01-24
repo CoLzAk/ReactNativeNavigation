@@ -25,17 +25,6 @@ class Account extends Component {
         super(props);
     }
 
-    componentWillMount() {
-        console.log('login required');
-
-        // this.props.dispatch(AuthenticationActions.loginRequired());
-        // check with AuthenticationService
-    }
-
-    componentDidUpdate() {
-        console.log('componentDidUpdate > ', this.props.isLoggedIn);
-    }
-
     logout() {
         this.props.dispatch(AuthenticationActions.logout());
     }

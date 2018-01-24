@@ -2,14 +2,13 @@ import { createReducer } from '../helpers';
 
 import { AuthenticationService } from '../services';
 import {
-    LOGIN_REQUIRED,
+    LOGIN_REQUESTED,
     LOGIN_SUCCEEDED,
     LOGOUT,
 } from '../actions/types';
 
 const initialState = {
     isLoggedIn: false,
-    isLoginRequired: false,
 };
 
 export const authentication = createReducer(initialState, {
@@ -17,14 +16,13 @@ export const authentication = createReducer(initialState, {
         return {
             ...state,
             isLoggedIn: true,
-            isLoginRequired: false,
         };
     },
-    [LOGIN_REQUIRED](state) {
+    [LOGIN_REQUESTED](state) {
         return {
             ...state,
-            isLoginRequired: true,
-        };
+            isLoggedIn: state.isLoggedIn,
+        }
     },
     [LOGOUT](state) {
         return {

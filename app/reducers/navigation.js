@@ -4,45 +4,66 @@ import { LOGIN_SUCCEEDED } from '../actions/types';
 import { createReducer } from '../helpers';
 import { AppNavigator } from '../navigation/appNavigator';
 
-const actionForOrder = AppNavigator.router.getActionForPathAndParams('order');
-const actionForLogin = AppNavigator.router.getActionForPathAndParams('login');
-const stateForOrder = AppNavigator.router.getStateForAction(actionForOrder);
-const stateForLogin = AppNavigator.router.getStateForAction(actionForLogin);
+const stateForLoggedIn = AppNavigator.router.getStateForAction(NavigationActions.reset({
+    index: 0,
+    actions: [
+        NavigationActions.navigate({
+            routeName: 'main',
+        }),
+    ],
+}));
 
-// const actionForLogin = TestNav.router.getActionForPathAndParams('login');
-// const stateForLogin = TestNav.router.getActionForPathAndParams('actionForLogin');
+// const stateForLoggedOut = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('login'));
+const stateForLoggedOut = AppNavigator.router.getStateForAction(NavigationActions.reset({
+    index: 0,
+    actions: [
+        NavigationActions.navigate({
+            routeName: 'auth',
+        }),
+    ],
+}));
 
-const initialState = { stateForOrder, stateForLogin };
-// const initialState = { stateForLogin };
+const initialState = { stateForLoggedIn, stateForLoggedOut };
 
-// export const navigation = createReducer(initialState, {});
+// export const navigation = (state = initialState, action) => {
+//     const nextState = AppNavigator.router.getStateForAction(action, state);
+//
+//     // Simply return the original `state` if `nextState` is null or undefined.
+//     return nextState || state;
+// };
+
 export const navigation = createReducer(initialState, {
     ['Navigation/BACK'](state) {
         return {
             ...state,
-            stateForOrder: AppNavigator.router.getStateForAction(
+            stateForLoggedIn: AppNavigator.router.getStateForAction(
                 NavigationActions.back(),
-                stateForOrder,
+                stateForLoggedIn,
             ),
+            stateForLoggedOut,
         };
     },
 
     ['Navigation/NAVIGATE'](state, action) {
+        console.log(state);
+        console.log(action);
         return {
             ...state,
-            stateForOrder: AppNavigator.router.getStateForAction(
+            stateForLoggedIn: AppNavigator.router.getStateForAction(
                 action,
-                state.stateForOrder,
+                state.stateForLoggedIn,
             ),
+            stateForLoggedOut,
         };
     },
 
     [LOGIN_SUCCEEDED](state) {
         return {
             ...state,
-            stateForOrder: AppNavigator.router.getStateForAction(
-                stateForOrder,
-            )
+            stateForLoggedIn: AppNavigator.router.getStateForAction(
+                stateForLoggedIn,
+            ),
+            stateForLoggedOut
         };
     },
 });

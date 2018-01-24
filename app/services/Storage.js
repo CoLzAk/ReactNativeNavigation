@@ -11,11 +11,12 @@ export default class StorageService {
     }
 
     static async removeItem(key) {
+        console.log(key);
         try {
-            await AsyncStorage.removeItem(key, value);
+            await AsyncStorage.removeItem(key);
         } catch (error) {
-            // Error saving data
-            console.error('an error occurred removing data in local storage');
+            // Error deleting data
+            console.error('an error occurred removing data in local storage : ', error);
         }
     }
 

@@ -12,9 +12,14 @@ import {
     AppNavigator,
 } from "./appNavigator";
 
+import { AuthenticationActions } from '../actions';
 class AppNavigation extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        this.props.dispatch(AuthenticationActions.isLoggedIn());
     }
 
     componentDidMount() {
@@ -26,7 +31,7 @@ class AppNavigation extends Component {
     }
 
     onBackPress() {
-        if (this.props.navigation.stateForOrder.index <= 1) {
+        if (this.props.navigation.stateForLoggedIn.index === 0) {
             BackHandler.exitApp();
 
             return;
@@ -38,18 +43,20 @@ class AppNavigation extends Component {
     };
 
     render() {
-        let { navigation, dispatch, isLoginRequired } = this.props;
+        let { navigation, dispatch, isLoggedIn } = this.props;
+
+        console.log(isLoggedIn);
+        let state = isLoggedIn === false ? navigation.stateForLoggedOut : navigation.stateForLoggedIn;
 
         return (
-            <AppNavigator
-                navigation={ addNavigationHelpers({ dispatch, state: navigation.stateForOrder }) } />
+            <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: state }) } />
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        isLoginRequired: state.authentication.isLoginRequired,
+        isLoggedIn: state.authentication.isLoggedIn,
         navigation: state.navigation,
     };
 };

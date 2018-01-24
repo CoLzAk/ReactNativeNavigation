@@ -66,16 +66,10 @@ const AuthNavigator = StackNavigator({
     },
 });
 
-export const AppNavigator = TabNavigator({
+const MainNavigator = TabNavigator({
     order: orderTab,
     orders: orderHistoryTab,
     account: accountTab,
-    auth: {
-        screen: AuthNavigator,
-        navigationOptions: {
-            tabBarVisible: false,
-        }
-    },
 }, {
     // tabBarPosition: 'bottom',
     tabBarOptions: {
@@ -84,12 +78,16 @@ export const AppNavigator = TabNavigator({
     }
 });
 
-// export const TestNav = StackNavigator({
-//     login: { screen: Login },
-//     // tab: {
-//     //     screen: AppNavigator
-//     // }
-// });
+export const AppNavigator = StackNavigator({
+    main: {
+        screen: MainNavigator,
+    },
+    auth: {
+        screen: AuthNavigator,
+    },
+}, {
+    headerMode: 'none',
+});
 
 
 
