@@ -1,6 +1,18 @@
-/** AUTHENTICATION **/
+/**
+ * AUTHENTICATION
+ */
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_REQUESTED = 'LOGIN_REQUESTED';
-export const LOGIN_REQUIRED = 'LOGIN_REQUESTED';
 export const LOGIN_SUCCEEDED = 'LOGIN_SUCCEEDED';
 export const LOGOUT = 'LOGOUT';
+
+/**
+ * NAVIGATION
+ */
+export const NAVIGATE_TO_LOGIN = 'NAVIGATE_TO_LOGIN';
+export const NAVIGATE_TO_REGISTER = 'NAVIGATE_TO_REGISTER';
+
+/**
+ * USER
+ */
+export const FETCH_USER = 'FETCH_USER';

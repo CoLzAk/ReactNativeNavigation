@@ -57,16 +57,7 @@ const orderHistoryTab = {
     },
 };
 
-const AuthNavigator = StackNavigator({
-    login: {
-        screen: Login
-    },
-    register: {
-        screen: Register
-    },
-});
-
-const MainNavigator = TabNavigator({
+const Main = TabNavigator({
     order: orderTab,
     orders: orderHistoryTab,
     account: accountTab,
@@ -80,10 +71,13 @@ const MainNavigator = TabNavigator({
 
 export const AppNavigator = StackNavigator({
     main: {
-        screen: MainNavigator,
+        screen: Main,
     },
-    auth: {
-        screen: AuthNavigator,
+    login: {
+        screen: Login
+    },
+    register: {
+        screen: Register
     },
 }, {
     headerMode: 'none',

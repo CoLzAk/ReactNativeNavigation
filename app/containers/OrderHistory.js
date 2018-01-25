@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { NavigationActions } from 'react-navigation';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,6 +8,8 @@ import {
     Content,
     Text,
 } from 'native-base';
+
+import { AuthenticationActions } from '../actions';
 
 class OrderHistory extends Component {
     constructor(props) {
@@ -28,9 +28,9 @@ class OrderHistory extends Component {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators(AuthenticationActions, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(AuthenticationActions, dispatch);
+}
 
 function mapStateToProps(state) {
     return {
@@ -40,4 +40,5 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps,
 )(OrderHistory);

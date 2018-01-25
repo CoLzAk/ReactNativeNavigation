@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { NavigationActions } from "react-navigation";
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -17,7 +15,10 @@ import {
 
 import t from 'tcomb-form-native';
 
-import { AuthenticationActions } from '../actions';
+import {
+    AuthenticationActions,
+    NavigationActions,
+} from '../actions';
 
 const Form = t.form.Form;
 
@@ -32,11 +33,7 @@ class Login extends Component {
     }
 
     navigateToRegister() {
-        let navigateToRegisterAction = NavigationActions.navigate({
-            routeName: 'auth/register',
-        });
-
-        this.props.navigation.dispatch(navigateToRegisterAction);
+        this.props.navigateToRegister();
     }
 
     submit() {
@@ -75,7 +72,7 @@ class Login extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(AuthenticationActions, dispatch);
+    return bindActionCreators({ ...AuthenticationActions, ...NavigationActions }, dispatch);
 }
 
 function mapStateToProps(state) {

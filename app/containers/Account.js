@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-import {
-    Modal,
-} from 'react-native';
-
-import { NavigationActions } from 'react-navigation';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -16,29 +10,39 @@ import {
     Text,
 } from 'native-base';
 
-import { AuthenticationActions } from '../actions';
+import {
+    AuthenticationActions,
+    UserActions,
+} from '../actions';
 
-import { Login } from './';
+import { UserCard } from '../components';
+
 
 class Account extends Component {
     constructor(props) {
         super(props);
     }
 
+    componentWillMount() {
+        console.log(this.props);
+        this.props.getUser();
+    }
+
     logout() {
-        this.props.dispatch(AuthenticationActions.logout());
+        this.props.logout();
     }
 
     render() {
         return (
             <Container>
                 <Content padder>
-                    <Button onPress={ () => { this.logout(); }}
+                    <UserCard user={ this.props.user } />
+
+                    <Button onPress={ () => { this.logout(); } }
                             block
                             primary>
                         <Text>action.logout</Text>
                     </Button>
-                    <Text>This is user</Text>
                 </Content>
             </Container>
         );
@@ -46,15 +50,17 @@ class Account extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(AuthenticationActions, dispatch);
+    return bindActionCreators({ ...AuthenticationActions, ...UserActions }, dispatch);
 }
 
 function mapStateToProps(state) {
     return {
         isLoggedIn: state.authentication.isLoggedIn,
+        user: state.user,
     };
 }
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps,
 )(Account);

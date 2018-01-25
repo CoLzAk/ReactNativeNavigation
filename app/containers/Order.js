@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { addNavigationHelpers, NavigationActions } from 'react-navigation';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -36,7 +34,6 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         isLoggedIn: state.authentication.isLoggedIn,
-        navigation: state.navigation,
     };
 }
 
