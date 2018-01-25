@@ -10,7 +10,7 @@ export function getUser() {
         return userService
             .getUser()
             .then((user) => {
-                dispatch(fetchUser(user));
+                dispatch(fetchUser(user[0]));
             });
     };
 }
