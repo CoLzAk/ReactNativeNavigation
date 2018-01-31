@@ -15,9 +15,9 @@ export default class AuthenticationService {
         return AuthenticationService.removeCredentials();
     }
 
-    static register(registerData) {
+    static async register(registerData) {
         // api call to check if user already exists
-        let user = AuthenticationService.getUserByCredentials({ email: registerData.email, password: registerData.password });
+        let user = await AuthenticationService.getUserByCredentials({ email: registerData.email, password: registerData.password });
 
         if (user.length > 0) {
             throw new Error('user already exists');
@@ -26,76 +26,53 @@ export default class AuthenticationService {
         user = new User(registerData.email, registerData.password);
 
         // api call to create user
-        return StorageService
-            .getItem('users')
-            .then((users) => {
-                users = JSON.parse(users);
+        let users = await StorageService.getItem('users');
+        users = JSON.parse(users);
 
-                if (users === null) {
-                    users = [];
-                }
+        if (users === null) {
+            users = [];
+        }
 
-                users.push(user);
+        users.push(user);
 
-                return StorageService
-                    .setItem('users', JSON.stringify(users));
-            })
-            .then(() => {
-                // 201 : return user
-                return { email: registerData.email, password: registerData.password };
-            });
+        await StorageService.setItem('users', JSON.stringify(users));
+
+        // 201 : return created user
+        return { email: registerData.email, password: registerData.password };
     }
 
-    static getUserByCredentials(credentials) {
-        return StorageService
-            .getItem('users')
-            .then((users) => {
-                users = JSON.parse(users);
+    static async getUserByCredentials(credentials) {
+        let users = await StorageService.getItem('users');
+        users = JSON.parse(users);
 
-                if (users === null) {
-                    return [];
-                }
+        if (users === null) {
+            return [];
+        }
 
-                return users.filter((user) => {
-                    console.log('user > ', user);
-                    return credentials.email === user.email && credentials.password === user.password
-                });
-            });
+        return users.filter((user) => {
+            return credentials.email === user.email && credentials.password === user.password
+        });
     }
 
-    static checkLogin() {
-        return StorageService
-            .getItem('users')
-            .then((users) => {
-                return JSON.parse(users);
-            });
+    static async saveCredentials(credentials) {
+        await StorageService.setItem('credentials', JSON.stringify(credentials));
+
+        return this;
     }
 
-    static saveCredentials(credentials) {
-        return StorageService
-            .setItem('credentials', JSON.stringify(credentials))
-            .then(() => {
-                return credentials;
-            });
+    static async removeCredentials() {
+        return await StorageService.removeItem('credentials');
     }
 
-    static removeCredentials() {
-        return StorageService
-            .removeItem('credentials');
-    }
+    static async getCredentials() {
+        const credentials = await StorageService.getItem('credentials');
 
-    static getCredentials() {
-        return StorageService
-            .getItem('credentials')
-            .then((credentials) => {
-                return JSON.parse(credentials);
-            });
+        return JSON.parse(credentials);
     }
 
     static async isLoggedIn() {
-        return AuthenticationService
-            .getCredentials((credentials) => {
-                return credentials !== null;
-            });
+        const credentials = await AuthenticationService.getCredentials();
+
+        return credentials !== null;
     }
 }

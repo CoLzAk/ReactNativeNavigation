@@ -9,7 +9,8 @@ export default class UserService {
                     .getUserByCredentials(credentials);
             })
             .then((user) => {
-                return user;
+                console.log('UserService.getUser > ', user[0]);
+                return user[0];
             });
     }
 }

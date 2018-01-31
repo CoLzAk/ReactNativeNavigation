@@ -11,7 +11,6 @@ export default class StorageService {
     }
 
     static async removeItem(key) {
-        console.log(key);
         try {
             await AsyncStorage.removeItem(key);
         } catch (error) {

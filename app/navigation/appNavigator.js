@@ -83,5 +83,28 @@ export const AppNavigator = StackNavigator({
     headerMode: 'none',
 });
 
+export const AuthNavigator = StackNavigator({
+    login: {
+        screen: Login
+    },
+    register: {
+        screen: Register
+    },
+}, {
+    headerMode: 'none',
+});
+
+export const MainNavigator = TabNavigator({
+    order: orderTab,
+    orders: orderHistoryTab,
+    account: accountTab,
+}, {
+    // tabBarPosition: 'bottom',
+    tabBarOptions: {
+        showLabel: false,
+        showIcon: true,
+    }
+});
+
 
 

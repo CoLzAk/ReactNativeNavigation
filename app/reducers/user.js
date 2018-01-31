@@ -5,14 +5,14 @@ import {
 } from '../actions/types';
 
 const initialState = {
-    user: null,
+    currentUser: null,
 };
 
 export const user = createReducer(initialState, {
     [FETCH_USER](state, action) {
         return {
             ...state,
-            user: action.user,
+            currentUser: action.user,
         };
     },
 });

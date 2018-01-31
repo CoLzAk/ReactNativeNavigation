@@ -10,9 +10,12 @@ import { connect } from 'react-redux';
 
 import {
     AppNavigator,
+    AuthNavigator,
+    MainNavigator,
 } from "./appNavigator";
 
 import { AuthenticationActions } from '../actions';
+
 class AppNavigation extends Component {
     constructor(props) {
         super(props);
@@ -43,11 +46,16 @@ class AppNavigation extends Component {
     };
 
     render() {
-        let { navigation, dispatch, isLoggedIn } = this.props;
-        let state = isLoggedIn === false ? navigation.stateForLoggedOut : navigation.stateForLoggedIn;
+        const { navigation, dispatch, isLoggedIn } = this.props;
+
+        if (isLoggedIn === false) {
+            return (
+                <AuthNavigator navigation={ addNavigationHelpers({ dispatch, state: navigation.stateForLoggedOut }) } />
+            );
+        }
 
         return (
-            <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: state }) } />
+            <MainNavigator navigation={ addNavigationHelpers({ dispatch, state: navigation.stateForLoggedIn }) } />
         );
     }
 }

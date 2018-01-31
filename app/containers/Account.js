@@ -23,8 +23,7 @@ class Account extends Component {
         super(props);
     }
 
-    componentWillMount() {
-        console.log(this.props);
+    componentDidMount() {
         this.props.getUser();
     }
 
@@ -33,10 +32,14 @@ class Account extends Component {
     }
 
     render() {
+        if (this.props.currentUser === null) {
+            return null;
+        }
+
         return (
             <Container>
                 <Content padder>
-                    <UserCard user={ this.props.user } />
+                    <UserCard user={ this.props.currentUser } />
 
                     <Button onPress={ () => { this.logout(); } }
                             block
@@ -55,8 +58,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        isLoggedIn: state.authentication.isLoggedIn,
-        user: state.user,
+        currentUser: state.user.currentUser,
     };
 }
 

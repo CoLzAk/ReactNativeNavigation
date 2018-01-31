@@ -11,5 +11,15 @@ export default class User {
         this.createdAt = createdAt;
         this.firstName = firstName;
         this.lastName = lastName;
+
+        this.fullName = this.getFullName();
+    }
+
+    getFullName() {
+        if (this.firstName === null && this.lastName === null) {
+            return `${this.email}`;
+        }
+
+        return `${this.firstName} ${this.lastName}`;
     }
 }

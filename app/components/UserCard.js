@@ -18,14 +18,13 @@ export default class UserCard extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <Card>
                 <CardItem>
                     <Left>
                         <Thumbnail source={ user } />
                         <Body>
-                            <Text>NativeBase</Text>
+                            <Text>{ this.props.user.fullName }</Text>
                             <Text note>April 15, 2016</Text>
                         </Body>
                     </Left>

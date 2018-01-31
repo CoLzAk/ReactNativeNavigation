@@ -10,7 +10,8 @@ export function getUser() {
         return userService
             .getUser()
             .then((user) => {
-                dispatch(fetchUser(user[0]));
+                console.log('UserActions.getUser > ', user);
+                dispatch(fetchUser(user));
             });
     };
 }
