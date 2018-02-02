@@ -1,14 +1,12 @@
 export default class User {
     constructor(
         email,
-        password,
-        createdAt = new Date(),
+        id = null,
         firstName = null,
         lastName = null,
     ) {
         this.email = email;
-        this.password = password;
-        this.createdAt = createdAt;
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
 
@@ -21,5 +19,9 @@ export default class User {
         }
 
         return `${this.firstName} ${this.lastName}`;
+    }
+
+    static constructFromCredentials(credentials) {
+        return new User(credentials.email, credentials.id);
     }
 }

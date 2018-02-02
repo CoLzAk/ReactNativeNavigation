@@ -24,7 +24,12 @@ export default class UserCard extends Component {
                     <Left>
                         <Thumbnail source={ user } />
                         <Body>
-                            <Text>{ this.props.user.fullName }</Text>
+                            <Text>
+                                {
+                                    // this.props.user.fullName
+                                }
+                            </Text>
+
                             <Text note>April 15, 2016</Text>
                         </Body>
                     </Left>

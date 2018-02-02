@@ -1,8 +1,8 @@
-import { AuthenticationService } from './';
+import { SecurityService } from './';
 
 export default class UserService {
     getUser() {
-        return AuthenticationService
+        return SecurityService
             .getCredentials()
             .then((credentials) => {
                 return AuthenticationService

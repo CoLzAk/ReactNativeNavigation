@@ -1,18 +1,18 @@
 import { createReducer } from '../helpers';
 
 import {
-    FETCH_USER,
+    FETCH_USER_PLACES,
 } from '../actions/types';
 
 const initialState = {
-    currentUser: null,
+    places: [],
 };
 
 export const user = createReducer(initialState, {
-    [FETCH_USER](state, action) {
+    [FETCH_USER_PLACES](state, action) {
         return {
             ...state,
-            currentUser: action.user,
+            places: action.places,
         };
     },
 });

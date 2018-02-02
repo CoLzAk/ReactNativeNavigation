@@ -11,8 +11,8 @@ import {
 } from 'native-base';
 
 import {
-    AuthenticationActions,
     UserActions,
+    SecurityActions,
 } from '../actions';
 
 import { UserCard } from '../components';
@@ -23,8 +23,7 @@ class Account extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        this.props.getUser();
+    componentWillMount() {
     }
 
     logout() {
@@ -53,12 +52,15 @@ class Account extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ ...AuthenticationActions, ...UserActions }, dispatch);
+    return bindActionCreators({
+        ...SecurityActions,
+        ...UserActions,
+    }, dispatch);
 }
 
 function mapStateToProps(state) {
     return {
-        currentUser: state.user.currentUser,
+        currentUser: state.application.currentUser,
     };
 }
 

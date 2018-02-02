@@ -9,23 +9,20 @@ import {
 import { connect } from 'react-redux';
 
 import {
-    AppNavigator,
-    AuthNavigator,
+    SecurityNavigator,
     MainNavigator,
 } from "./appNavigator";
 
-import { AuthenticationActions } from '../actions';
+import { SecurityActions } from '../actions';
 
 class AppNavigation extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentWillMount() {
-        this.props.dispatch(AuthenticationActions.isLoggedIn());
-    }
-
     componentDidMount() {
+        this.props.dispatch(SecurityActions.isLoggedIn());
+
         BackHandler.addEventListener("hardwareBackPress", () => this.onBackPress());
     }
 
@@ -46,11 +43,11 @@ class AppNavigation extends Component {
     };
 
     render() {
-        const { navigation, dispatch, isLoggedIn } = this.props;
+        const { navigation, dispatch, credentials } = this.props;
 
-        if (isLoggedIn === false) {
+        if (credentials === null) {
             return (
-                <AuthNavigator navigation={ addNavigationHelpers({ dispatch, state: navigation.stateForLoggedOut }) } />
+                <SecurityNavigator navigation={ addNavigationHelpers({ dispatch, state: navigation.stateForLoggedOut }) } />
             );
         }
 
@@ -62,7 +59,7 @@ class AppNavigation extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.authentication.isLoggedIn,
+        credentials: state.application.credentials,
         navigation: state.navigation,
     };
 };

@@ -5,19 +5,23 @@ import {
     NAVIGATE_TO_REGISTER,
     LOGIN_SUCCEEDED,
 } from '../actions/types';
+
 import { createReducer } from '../helpers';
+
 import {
-    AppNavigator,
-    AuthNavigator,
     MainNavigator,
+    SecurityNavigator,
 } from '../navigation/appNavigator';
 
-const ActionForLoggedOut = AuthNavigator.router.getActionForPathAndParams('login');
+const ActionForLoggedOut = SecurityNavigator.router.getActionForPathAndParams('login');
 const ActionForLoggedIn = MainNavigator.router.getActionForPathAndParams('order');
-const stateForLoggedOut = AuthNavigator.router.getStateForAction(ActionForLoggedOut);
+const stateForLoggedOut = SecurityNavigator.router.getStateForAction(ActionForLoggedOut);
 const stateForLoggedIn = MainNavigator.router.getStateForAction(ActionForLoggedIn);
 
-const initialState = { stateForLoggedIn, stateForLoggedOut };
+const initialState = {
+    stateForLoggedIn,
+    stateForLoggedOut,
+};
 
 export const navigation = createReducer(initialState, {
     ['Navigation/BACK'](state) {
@@ -41,7 +45,7 @@ export const navigation = createReducer(initialState, {
                 action,
                 state.stateForLoggedIn,
             ),
-            stateForLoggedOut: AuthNavigator.router.getStateForAction(
+            stateForLoggedOut: SecurityNavigator.router.getStateForAction(
                 action,
                 state.stateForLoggedOut,
             ),
@@ -54,15 +58,14 @@ export const navigation = createReducer(initialState, {
             stateForLoggedIn: MainNavigator.router.getStateForAction(
                 stateForLoggedIn,
             ),
-            stateForLoggedOut,
         };
     },
 
     [NAVIGATE_TO_LOGIN](state) {
         return {
             ...state,
-            stateForLoggedOut: AuthNavigator.router.getStateForAction(
-                AuthNavigator.router.getActionForPathAndParams('login'),
+            stateForLoggedOut: SecurityNavigator.router.getStateForAction(
+                ActionForLoggedOut,
                 stateForLoggedOut,
             ),
         };
@@ -71,8 +74,8 @@ export const navigation = createReducer(initialState, {
     [NAVIGATE_TO_REGISTER](state) {
         return {
             ...state,
-            stateForLoggedOut: AuthNavigator.router.getStateForAction(
-                AuthNavigator.router.getActionForPathAndParams('register'),
+            stateForLoggedOut: SecurityNavigator.router.getStateForAction(
+                SecurityNavigator.router.getActionForPathAndParams('register'),
                 stateForLoggedOut,
             ),
         };

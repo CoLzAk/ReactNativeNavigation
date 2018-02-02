@@ -13,25 +13,19 @@ import {
 import {
     UserActions,
 } from '../actions';
+import PlaceList from "../components/PlaceList";
 
-class Order extends Component {
+class PlaceListContainer extends Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-
-        // this.props.dispatch(UserActions.getPlaces(this.props.currentUser));
     }
 
     render() {
         return (
-            <Container>
-                <Content padder>
-                    <PlaceContainer { ...this.props } />
-                    <Text>This is order main page</Text>
-                </Content>
-            </Container>
+            <PlaceList />
         );
     }
 }
@@ -52,4 +46,4 @@ function mapStateToProps(state) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Order);
+)(PlaceListContainer);

@@ -9,7 +9,7 @@ import {
     Text,
 } from 'native-base';
 
-import { AuthenticationActions } from '../actions';
+import { SecurityActions } from '../actions';
 
 class OrderHistory extends Component {
     constructor(props) {
@@ -29,16 +29,10 @@ class OrderHistory extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(AuthenticationActions, dispatch);
-}
-
-function mapStateToProps(state) {
-    return {
-        isLoggedIn: state.authentication.isLoggedIn,
-    };
+    return bindActionCreators(SecurityActions, dispatch);
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
 )(OrderHistory);

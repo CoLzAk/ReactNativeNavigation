@@ -1,9 +1,11 @@
-import * as AuthenticationActions from './authentication';
 import * as NavigationActions from './navigation';
+import * as PlaceActions from './place';
+import * as SecurityActions from './security';
 import * as UserActions from './user';
 
 export {
-    AuthenticationActions,
     NavigationActions,
+    PlaceActions,
+    SecurityActions,
     UserActions,
 };

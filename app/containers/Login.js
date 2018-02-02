@@ -16,12 +16,12 @@ import {
 import t from 'tcomb-form-native';
 
 import {
-    AuthenticationActions,
     NavigationActions,
+    SecurityActions,
 } from '../actions';
 
+// TODO: move to model
 const Form = t.form.Form;
-
 const LoginForm = t.struct({
     email: t.String,
     password: t.String,
@@ -37,7 +37,7 @@ class Login extends Component {
     }
 
     submit() {
-        let loginData = this.refs.loginData.getValue();
+        const loginData = this.refs.loginData.getValue();
 
         if (loginData === null) {
             return;
@@ -72,16 +72,13 @@ class Login extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ ...AuthenticationActions, ...NavigationActions }, dispatch);
-}
-
-function mapStateToProps(state) {
-    return {
-        isLoggedIn: state.authentication.isLoggedIn,
-    };
+    return bindActionCreators({
+        ...SecurityActions,
+        ...NavigationActions,
+    }, dispatch);
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
 )(Login);

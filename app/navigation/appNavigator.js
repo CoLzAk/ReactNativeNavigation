@@ -57,33 +57,7 @@ const orderHistoryTab = {
     },
 };
 
-const Main = TabNavigator({
-    order: orderTab,
-    orders: orderHistoryTab,
-    account: accountTab,
-}, {
-    // tabBarPosition: 'bottom',
-    tabBarOptions: {
-        showLabel: false,
-        showIcon: true,
-    }
-});
-
-export const AppNavigator = StackNavigator({
-    main: {
-        screen: Main,
-    },
-    login: {
-        screen: Login
-    },
-    register: {
-        screen: Register
-    },
-}, {
-    headerMode: 'none',
-});
-
-export const AuthNavigator = StackNavigator({
+export const SecurityNavigator = StackNavigator({
     login: {
         screen: Login
     },

@@ -1,9 +1,9 @@
-import AuthenticationService from './Authentication';
-import StorageService from './Storage';
 import UserService from './User';
+import SecurityService from './Security';
+import StorageService from './Storage';
 
 export {
-    AuthenticationService,
+    SecurityService,
     StorageService,
     UserService,
 };

@@ -3,15 +3,14 @@ import {
     NAVIGATE_TO_REGISTER
 } from './types';
 
-export function navigateToLogin() {
+export const navigateToLogin = () => {
     return {
         type: NAVIGATE_TO_LOGIN,
     };
-}
+};
 
-export function navigateToRegister() {
+export const navigateToRegister = () => {
     return {
         type: NAVIGATE_TO_REGISTER,
     };
-}
-
+};
