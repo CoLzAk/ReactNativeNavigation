@@ -1,49 +1,37 @@
 import React, { Component } from 'react';
+import {
+    Text,
+    View,
+} from 'react-native';
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import {
-    Button,
-    Container,
-    Content,
-    Text,
-} from 'native-base';
+    PlaceAddComponent,
+    PlaceListComponent,
+} from '../components';
 
-import {
-    UserActions,
-} from '../actions';
-import PlaceList from "../components/PlaceList";
-
-class PlaceListContainer extends Component {
+class PlaceList extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-    }
-
     render() {
         return (
-            <PlaceList />
+            <View>
+                <Text>order.form.place</Text>
+
+                <PlaceListComponent places={ this.props.userPlaces } />
+                <PlaceAddComponent { ...this.props }/>
+            </View>
         );
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        ...UserActions,
-    }, dispatch);
-}
-
 function mapStateToProps(state) {
-    return {
-        credentials: state.application.credentials,
-        currentUser: state.application.currentUser,
-    };
+    return {};
 }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
-)(PlaceListContainer);
+)(PlaceList);

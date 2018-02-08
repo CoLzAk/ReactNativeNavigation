@@ -1,55 +1,38 @@
 import React, { Component } from 'react';
-
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import {
-    Button,
-    Container,
-    Content,
     Text,
-} from 'native-base';
+} from 'react-native-elements';
 
 import {
-    UserActions,
-} from '../actions';
+    OrderFormPlaceComponent,
+} from '../components';
 
 class Order extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-
-        // this.props.dispatch(UserActions.getPlaces(this.props.currentUser));
-    }
-
     render() {
         return (
-            <Container>
-                <Content padder>
-                    <PlaceContainer { ...this.props } />
-                    <Text>This is order main page</Text>
-                </Content>
-            </Container>
+            <View>
+                <OrderFormPlaceComponent places={ this.props.userPlaces } />
+                <Text>This is order main page</Text>
+            </View>
         );
     }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        ...UserActions,
-    }, dispatch);
 }
 
 function mapStateToProps(state) {
     return {
         credentials: state.application.credentials,
         currentUser: state.application.currentUser,
+        userPlaces: state.user.places,
     };
 }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
 )(Order);

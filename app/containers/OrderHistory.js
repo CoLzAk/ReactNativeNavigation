@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import {
-    Container,
-    Content,
     Text,
-} from 'native-base';
+} from 'react-native-elements';
 
 import { SecurityActions } from '../actions';
 
@@ -18,12 +16,9 @@ class OrderHistory extends Component {
 
     render() {
         return (
-            <Container>
-                <Content padder>
-
-                    <Text>This is order</Text>
-                </Content>
-            </Container>
+            <View>
+                <Text>This is order</Text>
+            </View>
         );
     }
 }

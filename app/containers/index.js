@@ -1,13 +1,15 @@
 import Account from './Account';
-import Order from './Order';
 import Login from './Login';
+import Order from './Order';
 import OrderHistory from './OrderHistory';
+import PlaceListContainer from './PlaceList';
 import Register from './Register';
 
 export {
     Account,
     Order,
-    Login,
     OrderHistory,
+    Login,
+    PlaceListContainer,
     Register,
 };

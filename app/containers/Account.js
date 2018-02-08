@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import {
     Button,
-    Container,
-    Content,
     Text,
-} from 'native-base';
+} from 'react-native-elements';
 
 import {
     UserActions,
@@ -23,9 +21,6 @@ class Account extends Component {
         super(props);
     }
 
-    componentWillMount() {
-    }
-
     logout() {
         this.props.logout();
     }
@@ -36,17 +31,15 @@ class Account extends Component {
         }
 
         return (
-            <Container>
-                <Content padder>
-                    <UserCard user={ this.props.currentUser } />
+            <View>
+                <UserCard user={ this.props.currentUser } />
 
-                    <Button onPress={ () => { this.logout(); } }
-                            block
-                            primary>
-                        <Text>action.logout</Text>
-                    </Button>
-                </Content>
-            </Container>
+                <Button onPress={ () => { this.logout(); } }
+                        block
+                        primary>
+                    <Text>action.logout</Text>
+                </Button>
+            </View>
         );
     }
 }

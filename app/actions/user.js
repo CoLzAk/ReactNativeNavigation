@@ -1,10 +1,17 @@
 import {
+    ADD_USER_PLACE,
     FETCH_CURRENT_USER,
     FETCH_USER_PLACES,
 } from './types';
 
 import { UserApi } from '../api';
 import { User } from '../models';
+
+export const addPlace = (user, place) => {
+    return async (dispatch) => {
+        dispatch(addUserPlace(user, place));
+    }
+};
 
 export const getCurrentUser = (credentials) => {
     return async (dispatch) => {
@@ -13,7 +20,8 @@ export const getCurrentUser = (credentials) => {
 
         user = await userApi.getOne(user);
 
-        return dispatch(fetchCurrentUser(user));
+        dispatch(fetchCurrentUser(user));
+        dispatch(getPlaces(user));
     };
 };
 
@@ -23,6 +31,13 @@ export const getPlaces = (user) => {
         const places = await userApi.getPlaces(user);
 
         return dispatch(fetchUserPlaces(places));
+    }
+};
+
+const addUserPlace = (place) => {
+    return {
+        type: ADD_USER_PLACE,
+        place,
     }
 };
 
@@ -39,4 +54,3 @@ const fetchUserPlaces = (places) => {
         places,
     };
 };
-

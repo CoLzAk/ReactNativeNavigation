@@ -10,7 +10,7 @@ export default class PlaceList extends Component {
     }
 
     render() {
-        const placesCollection = this.props.placesCollection;
+        const placesCollection = this.props.places;
         return (
             <List>
                 {

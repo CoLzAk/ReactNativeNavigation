@@ -1,9 +1,11 @@
 export default class Place {
     constructor(
         id,
-        name,
+        address,
+        name = null,
     ) {
         this.id = id;
+        this.address = address;
         this.name = name;
     }
 }
