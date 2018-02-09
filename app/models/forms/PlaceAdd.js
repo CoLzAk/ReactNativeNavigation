@@ -1,7 +1,6 @@
 import t from 'tcomb-form-native';
-import template from '../../helpers/form';
 
-export default class PlaceChoice {
+export default class PlaceAdd {
     constructor(
         places = [],
     ) {
@@ -17,13 +16,7 @@ export default class PlaceChoice {
     }
 
     getOptions() {
-        return {
-            fields: {
-                place: {
-                    template: template.textbox,
-                }
-            }
-        }
+        return {}
     }
 
     getPlaceEnums() {

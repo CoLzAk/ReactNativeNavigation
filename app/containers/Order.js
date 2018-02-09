@@ -18,7 +18,7 @@ class Order extends Component {
     render() {
         return (
             <View>
-                <OrderFormPlaceComponent places={ this.props.userPlaces } />
+                <OrderFormPlaceComponent places={ this.props.userPlaces } user={ this.props.currentUser } />
                 <Text>This is order main page</Text>
             </View>
         );
@@ -27,7 +27,6 @@ class Order extends Component {
 
 function mapStateToProps(state) {
     return {
-        credentials: state.application.credentials,
         currentUser: state.application.currentUser,
         userPlaces: state.user.places,
     };

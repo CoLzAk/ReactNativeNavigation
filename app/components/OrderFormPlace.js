@@ -7,12 +7,11 @@ import {
 import {
     Button,
     Text,
-    FormLabel,
-    FormInput,
-    FormValidationMessage,
-} from 'react-native-elements';
+} from 'native-base';
 
 import t from 'tcomb-form-native';
+
+import { OrderActions } from '../actions';
 
 import {
     PlaceChoiceForm,
@@ -24,30 +23,37 @@ export default class OrderFormPlace extends Component {
     constructor(props) {
         super(props);
 
-        this.placeForm = new PlaceChoiceForm(this.props.places);
+        this.state = {
+            isModalVisible: false,
+        };
+
+        this.placeChoiceForm = new PlaceChoiceForm(this.props.places);
+    }
+
+    submit() {
+        const placeChoiceData = this.refs.placeChoiceData.getValue();
+
+        if (placeChoiceData === null) {
+            return;
+        }
+
+        return this.props.dispatch(OrderActions.choosePlace(placeChoiceData));
     }
 
     render() {
         return (
             <View>
-
-                <FormLabel>Name</FormLabel>
-                <FormInput />
-                <FormValidationMessage>Error message</FormValidationMessage>
-
                 <Text>form.order.place_choice</Text>
 
-                <Form ref="placeData"
-                      type={ this.placeForm.getType() }
-                      options={ this.placeForm.getOptions() } />
+                <Form ref="placeChoiceData"
+                      type={ this.placeChoiceForm.getType() } />
 
-                <Button
-                    text='BUTTON'
-                    textStyle={{ fontWeight: "700" }}
-                    clear
-                />
+                <Button block
+                        primary
+                        onPress={ () => this.submit() }>
+                    <Text>form.button.add_place</Text>
+                </Button>
             </View>
-
         )
     }
 }

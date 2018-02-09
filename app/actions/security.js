@@ -20,7 +20,6 @@ export const isLoggedIn = () => {
         const credentials = await SecurityService.getCredentials();
 
         // TODO: check if credentials have not expired
-        console.log(credentials);
         if (credentials === null) {
             return dispatch(logoutSucceeded());
         }

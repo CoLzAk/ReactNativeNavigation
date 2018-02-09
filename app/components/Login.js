@@ -39,7 +39,8 @@ export default class Login extends Component {
             <Container>
                 <Content padder>
                     <Form ref="loginData"
-                          type={ this.loginForm.getType() } />
+                          type={ this.loginForm.getType() }
+                          options={ this.loginForm.getOptions() } />
 
                     <Button block
                             primary

@@ -1,5 +1,4 @@
 import t from 'tcomb-form-native';
-import template from '../../helpers/form';
 
 export default class Login {
     getType() {
@@ -10,15 +9,6 @@ export default class Login {
     }
 
     getOptions() {
-        return {
-            fields: {
-                email: {
-                    template: template.textbox,
-                },
-                password: {
-                    template: template.textbox,
-                },
-            }
-        }
+        return {}
     }
 }

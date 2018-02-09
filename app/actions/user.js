@@ -4,12 +4,14 @@ import {
     FETCH_USER_PLACES,
 } from './types';
 
-import { UserApi } from '../api';
+import { PlaceApi, UserApi } from '../api';
 import { User } from '../models';
 
-export const addPlace = (user, place) => {
+export const addPlace = (placeData) => {
     return async (dispatch) => {
-        dispatch(addUserPlace(user, place));
+        const placeApi = new PlaceApi();
+        // place = await placeApi.addOne(placeData);
+        dispatch(addUserPlace(placeData));
     }
 };
 

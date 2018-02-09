@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import { Item, Input, Label } from 'native-base';
 
 export const textbox = (locals) => {
+    console.log('locals > ', locals);
     if (locals.hidden) {
         return null;
     }
