@@ -6,8 +6,7 @@ import {
     NavigationActions,
     SecurityActions,
 } from '../actions';
-
-import { RegisterComponent } from '../components';
+import { RegisterFormComponent } from '../components/security';
 
 class Register extends Component {
     constructor(props) {
@@ -16,7 +15,7 @@ class Register extends Component {
 
     render() {
         return (
-            <RegisterComponent { ...this.props } />
+            <RegisterFormComponent { ...this.props } />
         );
     }
 }

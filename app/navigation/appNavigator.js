@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
 import {
     StackNavigator,
     TabNavigator,
 } from 'react-navigation';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
     Account,
@@ -12,8 +12,6 @@ import {
     OrderHistory,
     Register,
 } from '../containers';
-
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const accountTab = {
     screen: Account,

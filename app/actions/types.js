@@ -24,3 +24,8 @@ export const FETCH_USER_PLACES = 'FETCH_USER_PLACES';
  */
 export const GEOCODE_SUCCEEDED = 'GEOCODE_SUCCEEDED';
 export const ADD_USER_PLACE = 'ADD_USER_PLACE';
+
+/**
+ * ORDER
+ */
+export const ORDER_PLACE_SET = 'ORDER_PLACE_SET';

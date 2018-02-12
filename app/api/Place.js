@@ -6,23 +6,23 @@ import { User } from '../models';
 
 const fakePlacesCollection = [
     {
-        name: 'Bordeaux',
+        address: 'Bordeaux',
     }, {
-        name: 'Paris',
+        address: 'Paris',
     }, {
-        name: 'Toulouse',
+        address: 'Toulouse',
     }, {
-        name: 'Marseille',
+        address: 'Marseille',
     }, {
-        name: 'Lyon',
+        address: 'Lyon',
     },
 ];
 
 export default class PlaceApi {
     geocode(slug) {
         return fakePlacesCollection.filter((place) => {
-            console.log(place.name, place.name.includes(slug));
-            return place.name.search(slug) > -1;
+            console.log(place.address, place.address.includes(slug));
+            return place.address.search(slug) > -1;
         });
     }
 }

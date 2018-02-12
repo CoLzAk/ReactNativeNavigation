@@ -7,8 +7,8 @@ import {
 } from 'react-native-elements';
 
 import {
-    OrderFormPlaceComponent,
-} from '../components';
+    OrderDeliveryFormComponent,
+} from '../components/order';
 
 class Order extends Component {
     constructor(props) {
@@ -18,8 +18,9 @@ class Order extends Component {
     render() {
         return (
             <View>
-                <OrderFormPlaceComponent places={ this.props.userPlaces } user={ this.props.currentUser } />
-                <Text>This is order main page</Text>
+                <Text>form.order.new</Text>
+
+                <OrderDeliveryFormComponent { ...this.props } />
             </View>
         );
     }
@@ -29,6 +30,7 @@ function mapStateToProps(state) {
     return {
         currentUser: state.application.currentUser,
         userPlaces: state.user.places,
+        order: state.order,
     };
 }
 

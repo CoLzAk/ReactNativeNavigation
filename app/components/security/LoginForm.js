@@ -5,54 +5,54 @@ import {
     Content,
     Button,
     Text,
-    Item,
-    Input,
 } from 'native-base';
 
 import t from 'tcomb-form-native';
 
-import { RegisterForm } from '../models/forms';
+import { LoginForm } from '../../models/forms';
 
 const Form = t.form.Form;
 
-export default class Register extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
 
-        this.registerForm = new RegisterForm();
+        this.loginForm = new LoginForm();
     }
 
-    navigateToLogin() {
-        this.props.navigateToLogin();
+    navigateToRegister() {
+        this.props.navigateToRegister();
     }
 
     submit() {
-        const registerData = this.refs.registerData.getValue();
+        const loginData = this.refs.loginData.getValue();
 
-        if (registerData === null) {
+        if (loginData === null) {
             return;
         }
 
-        return this.props.register(registerData);
+        return this.props.login(loginData);
     }
 
     render() {
         return (
             <Container>
                 <Content padder>
-                    <Form ref="registerData"
-                          type={ this.registerForm.getType() } />
+                    <Form ref="loginData"
+                          type={ this.loginForm.getType() }
+                          options={ this.loginForm.getOptions() } />
 
                     <Button block
                             primary
                             onPress={ () => this.submit() }>
-                        <Text>form.button.register</Text>
+                        <Text>form.button.login</Text>
                     </Button>
 
                     <Button block
                             transparent
-                            onPress={ () => this.navigateToLogin() }>
-                        <Text>link.login</Text>
+                            primary
+                            onPress={ () => this.navigateToRegister() }>
+                        <Text>link.register</Text>
                     </Button>
                 </Content>
             </Container>

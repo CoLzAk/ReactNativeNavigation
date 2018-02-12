@@ -4,7 +4,7 @@ const userPlaces = [
     {
         id: 1,
         name: 'Domicile',
-        address: 'Bordeaux',
+        address: 'Mérignac',
     }, {
         id: 2,
         name: 'Bureau',
@@ -51,10 +51,8 @@ export default class UserApi {
             return [];
         }
 
-        const userPlaces =  places.filter((place) => {
+        return  places.filter((place) => {
             return user.id === place.user.id;
         });
-
-        return userPlaces;
     }
 }

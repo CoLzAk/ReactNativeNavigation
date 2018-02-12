@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,8 +6,7 @@ import {
     NavigationActions,
     SecurityActions,
 } from '../actions';
-
-import { LoginComponent } from '../components';
+import { LoginFormComponent } from '../components/security';
 
 class Login extends Component {
     constructor(props) {
@@ -17,7 +15,7 @@ class Login extends Component {
 
     render() {
         return (
-            <LoginComponent { ...this.props } />
+            <LoginFormComponent { ...this.props } />
         );
     }
 }
