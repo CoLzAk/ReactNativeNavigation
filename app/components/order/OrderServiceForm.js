@@ -38,20 +38,13 @@ export default class OrderServiceForm extends Component {
 
     onServiceChange(service) {
         const availableItems = OrderService.getItemsForService(service);
-        console.log(availableItems);
         const items = OrderItemCollection.initialize(availableItems);
-        console.log(items);
 
 
         this.setState({
             service: service,
             items: items,
         });
-
-        console.log(this.state);
-
-        this.props.dispatch(OrderActions.setService(service));
-
     }
 
     render() {

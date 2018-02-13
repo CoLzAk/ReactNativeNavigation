@@ -12,9 +12,31 @@ import {
 
 import { AddToCartButtonsComponent } from '../buttons';
 
+import { OrderActions } from '../../actions';
+
 export default class OrderItemListForm extends Component {
     constructor(props) {
         super(props);
+    }
+
+    onQuantityChange(quantity, item) {
+        let items = this.props.items.map((currentItem) => {
+            if (item.name === currentItem.name) {
+                currentItem.quantity = quantity;
+            }
+
+            return currentItem;
+        });
+
+        items = items.filter((item) => {
+            return item.quantity > 0;
+        });
+
+        this.setItems(items);
+    }
+
+    setItems(items) {
+        this.props.dispatch(OrderActions.setItems(items));
     }
 
     render() {

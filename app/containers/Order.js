@@ -7,7 +7,9 @@ import {
     Text,
 } from 'native-base';
 
+import { OrderDeliveryAddress } from './';
 import {
+    OrderDeliveryChoiceFormComponent,
     OrderDeliveryFormComponent,
     OrderServiceFormComponent,
 } from '../components/order';
@@ -27,9 +29,19 @@ class Order extends Component {
                 <Content>
                     <Text>form.order.new</Text>
 
-                    <OrderDeliveryFormComponent { ...this.props } />
+                    <OrderDeliveryAddress />
 
-                    <OrderServiceFormComponent { ...this.props } />
+                    {/*<OrderDeliveryFormComponent { ...this.props } />*/}
+
+
+
+
+
+
+
+
+
+                    {/*<OrderServiceFormComponent { ...this.props } />*/}
                 </Content>
             </Container>
         );

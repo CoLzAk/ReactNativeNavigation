@@ -15,23 +15,39 @@ const styles = StyleSheet.create({
     }
 });
 
+import { OrderActions } from '../../actions';
+
 export default class AddToCartButtons extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            quantity: this.props.item.quantity,
+        }
     }
 
     decreaseQuantity() {
-        if (this.props.item.quantity === 0) {
+        if (this.state.quantity === 0) {
             console.log('Not under 0');
 
             return;
         }
 
-        return this.props.item.quantity--;
+        this.setState({
+            state: this.state.quantity--,
+        });
+
+        // this.props.dispatch(OrderActions.removeItem(this.props.item));
+
+        // this.props.onQuantityChange('foo', 'bar');
     }
 
     increaseQuantity() {
-        return this.props.item.quantity++;
+        this.setState({
+            state: this.state.quantity++,
+        });
+
+        // this.props.dispatch(OrderActions.addItem(this.props.item));
     }
 
     render() {
@@ -47,7 +63,7 @@ export default class AddToCartButtons extends Component {
                 <Text> </Text>
 
                 <Badge primary>
-                    <Text>{ this.props.item.quantity }</Text>
+                    <Text>{ this.state.quantity }</Text>
                 </Badge>
 
                 <Text> </Text>

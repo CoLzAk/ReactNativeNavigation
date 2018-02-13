@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import {
     Button,
@@ -12,9 +13,11 @@ import {
     Text,
 } from 'native-base';
 
-import { GeoCodingApi } from '../../api';
+import { OrderActions } from '../actions';
 
-export default class PlaceList extends Component {
+import { GeoCodingApi } from '../api';
+
+class OrderDeliveryAddress extends Component {
     constructor(props) {
         super(props);
 
@@ -48,7 +51,7 @@ export default class PlaceList extends Component {
             geoCodedAddresses: [],
         });
 
-
+        this.props.dispatch(OrderActions.setDeliveryAddress(deliveryAddress));
     }
 
     render() {
@@ -83,3 +86,13 @@ export default class PlaceList extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        deliveryAddresses: state.user.deliveryAddresses,
+    };
+}
+
+export default connect(
+    mapStateToProps,
+)(OrderDeliveryAddress);
