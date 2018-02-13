@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
-import {
-    View,
-} from 'react-native';
-
+import { View } from 'react-native';
 import {
     Button,
     Text,
@@ -14,36 +11,40 @@ import {
     OrderDeliveryChoiceFormComponent,
 } from './';
 
+import {
+    OrderActions,
+} from '../../actions';
+
 export default class OrderDeliveryForm extends Component {
     constructor(props) {
         super(props);
 
-        this.userPlaces = this.props.userPlaces;
+        this.deliveryAddresses = this.props.deliveryAddresses;
 
         this.state = {
-            placeAdd: this.userPlaces.length === 0,
-            selectedPlace: null,
-        }
+            showAddDeliveryAddressForm: this.deliveryAddresses.length === 0,
+            deliveryAddress: this.props.order.deliveryAddress,
+        };
     }
 
     toggleForm() {
         this.setState({
-            placeAdd: !this.state.placeAdd,
+            showAddDeliveryAddressForm: !this.state.showAddDeliveryAddressForm,
         });
     }
 
-    setSelectedPlace(place) {
+    setDeliveryAddress(deliveryAddress) {
         this.setState({
-            selectedPlace: place,
+            deliveryAddress: deliveryAddress,
         });
     }
 
     renderPlaceAddForm() {
         return (
             <View>
-                <OrderDeliveryAddFormComponent setSelectedPlace={ this.setSelectedPlace.bind(this) } />
+                <OrderDeliveryAddFormComponent setDeliveryAddress={ this.setDeliveryAddress.bind(this) } />
                 {
-                    (this.userPlaces.length > 0) ?
+                    (this.deliveryAddresses.length > 0) ?
                         <Button transparent
                                 onPress={() => this.toggleForm()}>
                             <Text>form.order.delivery_address.choose</Text>
@@ -57,7 +58,7 @@ export default class OrderDeliveryForm extends Component {
     renderPlaceListForm() {
         return (
             <View>
-                <OrderDeliveryChoiceFormComponent places={ this.userPlaces } />
+                <OrderDeliveryChoiceFormComponent places={ this.deliveryAddresses } />
 
                 <Button transparent
                         onPress={ () => this.toggleForm() }>
@@ -68,12 +69,13 @@ export default class OrderDeliveryForm extends Component {
     }
 
     submit() {
+        this.props.dispatch(OrderActions.setDeliveryAddress(this.state.deliveryAddress));
         // save user place if not exists
         // go to step 2
     }
 
     render() {
-        const form = this.state.placeAdd === true ? this.renderPlaceAddForm() : this.renderPlaceListForm();
+        const form = this.state.showAddDeliveryAddressForm === true ? this.renderPlaceAddForm() : this.renderPlaceListForm();
 
         return (
             <View>
@@ -82,7 +84,7 @@ export default class OrderDeliveryForm extends Component {
                 { form }
 
                 <Button block
-                        disabled={ this.state.selectedPlace === null }
+                        disabled={ this.state.deliveryAddress === null }
                         onPress={ () => this.submit() }>
                     <Text>form.order.delivery.submit</Text>
                 </Button>

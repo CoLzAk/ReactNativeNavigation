@@ -1,7 +1,7 @@
 import {
     ADD_USER_PLACE,
     FETCH_CURRENT_USER,
-    FETCH_USER_PLACES,
+    GET_USER_DELIVERY_ADDRESSES,
 } from './types';
 
 import { PlaceApi, UserApi } from '../api';
@@ -12,7 +12,7 @@ export const addPlace = (placeData) => {
         const placeApi = new PlaceApi();
         // place = await placeApi.addOne(placeData);
         dispatch(addUserPlace(placeData));
-    }
+    };
 };
 
 export const getCurrentUser = (credentials) => {
@@ -23,16 +23,16 @@ export const getCurrentUser = (credentials) => {
         user = await userApi.getOne(user);
 
         dispatch(fetchCurrentUser(user));
-        dispatch(getPlaces(user));
+        dispatch(getDeliveryAddress(user));
     };
 };
 
-export const getPlaces = (user) => {
+export const getDeliveryAddress = (user) => {
     return async (dispatch) => {
         const userApi = new UserApi();
-        const places = await userApi.getPlaces(user);
+        const deliveryAddresses = await userApi.getPlaces(user);
 
-        return dispatch(fetchUserPlaces(places));
+        return dispatch(fetchUserDeliveryAddress(deliveryAddresses));
     }
 };
 
@@ -50,9 +50,9 @@ const fetchCurrentUser = (user) => {
     };
 };
 
-const fetchUserPlaces = (places) => {
+const fetchUserDeliveryAddress = (deliveryAddresses) => {
     return {
-        type: FETCH_USER_PLACES,
-        places,
+        type: GET_USER_DELIVERY_ADDRESSES,
+        deliveryAddresses,
     };
 };

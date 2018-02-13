@@ -1,18 +1,25 @@
 import { createReducer } from '../helpers';
 
 import {
-    ORDER_PLACE_SET,
+    SET_ORDER_DELIVERY_ADDRESS,
+    SET_ORDER_SERVICE,
 } from '../actions/types';
+import { Order } from '../models';
 
-const initialState = {
-    place: null,
-};
+const initialState = new Order();
 
 export const order = createReducer(initialState, {
-    [ORDER_PLACE_SET](state, action) {
+    [SET_ORDER_DELIVERY_ADDRESS](state, action) {
         return {
             ...state,
-            place: action.place,
+            deliveryAddress: action.deliveryAddress,
+        };
+    },
+
+    [SET_ORDER_SERVICE](state, action) {
+        return {
+            ...state,
+            service: action.service,
         };
     },
 });

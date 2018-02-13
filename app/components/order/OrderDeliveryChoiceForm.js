@@ -7,7 +7,6 @@ import {
     Item,
     Label,
     Picker,
-    Text,
 } from 'native-base';
 
 export default class PlaceList extends Component {

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import {
+    Container,
+    Content,
     Text,
-} from 'react-native-elements';
+} from 'native-base';
 
 import {
     OrderDeliveryFormComponent,
+    OrderServiceFormComponent,
 } from '../components/order';
 
 class Order extends Component {
@@ -15,13 +17,21 @@ class Order extends Component {
         super(props);
     }
 
+    componentDidUpdate() {
+        console.log('order: ', this.props.order);
+    }
+
     render() {
         return (
-            <View>
-                <Text>form.order.new</Text>
+            <Container>
+                <Content>
+                    <Text>form.order.new</Text>
 
-                <OrderDeliveryFormComponent { ...this.props } />
-            </View>
+                    <OrderDeliveryFormComponent { ...this.props } />
+
+                    <OrderServiceFormComponent { ...this.props } />
+                </Content>
+            </Container>
         );
     }
 }
@@ -29,7 +39,7 @@ class Order extends Component {
 function mapStateToProps(state) {
     return {
         currentUser: state.application.currentUser,
-        userPlaces: state.user.places,
+        deliveryAddresses: state.user.deliveryAddresses,
         order: state.order,
     };
 }

@@ -24,23 +24,25 @@ export default class OrderDeliveryAddForm extends Component {
     }
 
     async autoComplete(slug) {
+        this.setState({
+            address: slug,
+        });
+
         const placeApi = new PlaceApi();
         const places = await placeApi.geocode(slug);
 
-
         this.setState({
-            address: slug,
             places: places,
         });
     }
 
-    selectPlace(place) {
+    onPlaceChange(place) {
         this.setState({
             address: place.address,
             places: [],
         });
 
-        this.props.setSelectedPlace(place);
+        this.props.setDeliveryAddress(place);
     }
 
     render() {
@@ -54,7 +56,7 @@ export default class OrderDeliveryAddForm extends Component {
 
                     <List dataArray={ this.state.places }
                           renderRow={(place) =>
-                              <ListItem onPress={ this.selectPlace.bind(this, place) }>
+                              <ListItem onPress={ this.onPlaceChange.bind(this, place) }>
                                   <Text>{ place.address }</Text>
                               </ListItem>
                           }>
