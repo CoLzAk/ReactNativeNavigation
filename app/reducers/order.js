@@ -3,7 +3,7 @@ import { createReducer } from '../helpers';
 import {
     ADD_ORDER_ITEM,
     SET_ORDER_DELIVERY_ADDRESS,
-    SET_ORDER_ITEMS,
+    SET_ORDER_CART,
     SET_ORDER_SERVICE,
     REMOVE_ORDER_ITEM,
 } from '../actions/types';
@@ -40,10 +40,10 @@ export const order = createReducer(initialState, {
         };
     },
 
-    [SET_ORDER_ITEMS](state, action) {
+    [SET_ORDER_CART](state, action) {
         return {
             ...state,
-            items: action.items,
+            cart: action.cart,
         };
     },
 });

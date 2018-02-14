@@ -23,7 +23,7 @@ export const getCurrentUser = (credentials) => {
         user = await userApi.getOne(user);
 
         dispatch(fetchCurrentUser(user));
-        dispatch(getDeliveryAddress(user));
+        // dispatch(getDeliveryAddress(user));
     };
 };
 

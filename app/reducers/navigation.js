@@ -1,6 +1,7 @@
 import { NavigationActions } from 'react-navigation';
 
 import {
+    NAVIGATE_TO_CART,
     NAVIGATE_TO_LOGIN,
     NAVIGATE_TO_REGISTER,
     LOGIN_SUCCEEDED,
@@ -56,6 +57,16 @@ export const navigation = createReducer(initialState, {
         return {
             ...state,
             stateForLoggedIn: MainNavigator.router.getStateForAction(
+                stateForLoggedIn,
+            ),
+        };
+    },
+
+    [NAVIGATE_TO_CART](state) {
+        return {
+            ...state,
+            stateForLoggedIn: SecurityNavigator.router.getStateForAction(
+                MainNavigator.router.getActionForPathAndParams('cart'),
                 stateForLoggedIn,
             ),
         };

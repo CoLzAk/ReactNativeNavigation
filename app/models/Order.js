@@ -1,4 +1,4 @@
-import { OrderItemCollection } from './';
+import { DeliveryAddress, Cart } from './';
 
 export default class Order {
     static IRONING_SERVICE = 'IRONING';
@@ -6,13 +6,13 @@ export default class Order {
 
     constructor(
         id = null,
-        deliveryAddress = null,
+        deliveryAddress = new DeliveryAddress(),
         service = null,
-        items = new OrderItemCollection()
+        cart = new Cart()
     ) {
         this.id = id;
         this.deliveryAddress = deliveryAddress;
         this.service = service;
-        this.items = items;
+        this.cart = cart;
     }
 }

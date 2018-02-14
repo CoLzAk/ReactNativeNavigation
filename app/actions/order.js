@@ -1,7 +1,7 @@
 import {
     ADD_ORDER_ITEM,
     SET_ORDER_DELIVERY_ADDRESS,
-    SET_ORDER_ITEMS,
+    SET_ORDER_CART,
     SET_ORDER_SERVICE,
     REMOVE_ORDER_ITEM,
 } from './types';
@@ -30,9 +30,9 @@ export const removeItem = (item) => {
     };
 };
 
-export const setItems = (items) => {
+export const setCart = (cart) => {
     return async (dispatch) => {
-        return dispatch(setOrderItems(items));
+        return dispatch(setOrderCart(cart));
     };
 };
 
@@ -50,10 +50,10 @@ const setOrderService = (service) => {
     };
 };
 
-const setOrderItems = (items) => {
+const setOrderCart = (cart) => {
     return {
-        type: SET_ORDER_ITEMS,
-        items,
+        type: SET_ORDER_CART,
+        cart,
     };
 };
 
@@ -63,4 +63,3 @@ const updateOrderItem = (type, item) => {
         item,
     };
 };
-

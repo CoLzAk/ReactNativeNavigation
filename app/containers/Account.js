@@ -4,17 +4,24 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import {
+    Body,
     Button,
+    Container,
+    Content,
+    List,
+    ListItem,
+    Right,
     Text,
-} from 'react-native-elements';
+    Thumbnail,
+} from 'native-base';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
     UserActions,
     SecurityActions,
 } from '../actions';
 
-import { UserCard } from '../components';
-
+import user from '../assets/images/user.png';
 
 class Account extends Component {
     constructor(props) {
@@ -26,20 +33,42 @@ class Account extends Component {
     }
 
     render() {
-        if (this.props.currentUser === null) {
-            return null;
-        }
-
         return (
-            <View>
-                <UserCard user={ this.props.currentUser } />
+            <Container>
+                <Content>
+                    <Body>
+                    <Thumbnail large source={ user } />
+                    <Text>John Doe</Text>
+                    <Text>Membre depuis le 15/10/2017</Text>
+                    </Body>
 
-                <Button onPress={ () => { this.logout(); } }
-                        block
-                        primary>
-                    <Text>action.logout</Text>
-                </Button>
-            </View>
+                    <List>
+                        <ListItem>
+                            <Body>
+                            <Text>Mes adresses de livraison</Text>
+                            </Body>
+                            <Right>
+                                <MaterialCommunityIcons name="chevron-right" />
+                            </Right>
+                        </ListItem>
+
+                        <ListItem>
+                            <Body>
+                            <Text>Mes moyen de paiement</Text>
+                            </Body>
+                            <Right>
+                                <MaterialCommunityIcons name="chevron-right" />
+                            </Right>
+                        </ListItem>
+                    </List>
+
+                    <Button onPress={ () => { this.logout(); } }
+                            block
+                            primary>
+                        <Text>action.logout</Text>
+                    </Button>
+                </Content>
+            </Container>
         );
     }
 }
